@@ -19,6 +19,10 @@ class AdModel {
     let price: Price
     let seller: Seller
     let image: String?
+    
+    func toSearchAdModel() -> SearchAdModel {
+        SearchAdModel(ad: self, searchedQuery: "")
+    }
 }
 
 struct Seller {
