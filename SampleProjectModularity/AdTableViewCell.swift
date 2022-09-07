@@ -17,7 +17,14 @@ class AdTableViewCell: UITableViewCell {
     @IBOutlet weak var websiteText: UILabel!
     
     var adFeaturesDelegate: AdFeatures?
-    var ad: AdModel?
+    var searchAd: SearchAdModel? {
+        didSet {
+            guard let searchAd = searchAd else {
+                return
+            }
+            viewModel = AdViewModel(searchAd: searchAd)
+        }
+    }
     var viewModel: AdViewModel? {
         didSet {
             guard let viewModel = viewModel else {
@@ -47,14 +54,14 @@ class AdTableViewCell: UITableViewCell {
     }
     
     @objc func openWebsite() {
-        guard let ad = ad else {
+        guard let ad = searchAd?.ad else {
             return
         }
         adFeaturesDelegate?.openWebsite(ad: ad)
     }
     
     @objc func openSellerProfile() {
-        guard let ad = ad else {
+        guard let ad = searchAd?.ad else {
             return
         }
         adFeaturesDelegate?.openSellerProfile(ad: ad)

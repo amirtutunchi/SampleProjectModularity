@@ -90,8 +90,7 @@ extension AdViewController: UITableViewDelegate, UITableViewDataSource {
             fatalError("Can not dequeue cell")
         }
         cell.adFeaturesDelegate = self
-        cell.ad = ads[indexPath.row].ad
-        cell.viewModel = AdViewModel(searchAd: ads[indexPath.row])
+        cell.searchAd = ads[indexPath.row]
         return cell
     }
 }
