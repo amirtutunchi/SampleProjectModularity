@@ -98,6 +98,54 @@
             </objects>
             <point key="canvasLocation" x="28.985507246376812" y="83.705357142857139"/>
         </scene>
+        <!--Seller View Controller-->
+        <scene sceneID="Td3-db-i5S">
+            <objects>
+                <viewController storyboardIdentifier="SellerController" id="eLl-tU-aVq" customClass="SellerViewController" customModule="SampleProjectModularity" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1jl-n9-k0R">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seller Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gli-Hf-i4R">
+                                <rect key="frame" x="111" y="72" width="192" height="29"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seller Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EA0-Vi-1uI">
+                                <rect key="frame" x="161" y="133" width="92" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seller Website" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Upb-aR-HpJ">
+                                <rect key="frame" x="152.5" y="186" width="109" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="kTU-Jg-s7U"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Upb-aR-HpJ" firstAttribute="top" secondItem="EA0-Vi-1uI" secondAttribute="bottom" constant="32" id="58C-S2-MV9"/>
+                            <constraint firstItem="EA0-Vi-1uI" firstAttribute="top" secondItem="gli-Hf-i4R" secondAttribute="bottom" constant="32" id="PMl-Nw-hZq"/>
+                            <constraint firstItem="gli-Hf-i4R" firstAttribute="centerX" secondItem="kTU-Jg-s7U" secondAttribute="centerX" id="RAM-RQ-QVE"/>
+                            <constraint firstItem="EA0-Vi-1uI" firstAttribute="centerX" secondItem="kTU-Jg-s7U" secondAttribute="centerX" id="gG8-ba-ea5"/>
+                            <constraint firstItem="Upb-aR-HpJ" firstAttribute="centerX" secondItem="kTU-Jg-s7U" secondAttribute="centerX" id="mOG-mR-XEv"/>
+                            <constraint firstItem="gli-Hf-i4R" firstAttribute="top" secondItem="kTU-Jg-s7U" secondAttribute="top" constant="28" id="tFI-eV-Bht"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ppA-nZ-0gG"/>
+                    <connections>
+                        <outlet property="sellerNameLabel" destination="EA0-Vi-1uI" id="Php-eq-7jg"/>
+                        <outlet property="sellerWebsiteLabel" destination="Upb-aR-HpJ" id="it8-yW-e9K"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="18I-sg-bOv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="925" y="77"/>
+        </scene>
     </scenes>
     <resources>
         <image name="doc.text.image.fill" catalog="system" width="115" height="128"/>

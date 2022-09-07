@@ -26,7 +26,7 @@ class AdViewController: UIViewController {
         tableView.reloadData()
     }
     func presentInAppBrowser(_ url: URL) {
-        /// just to demonstrate the problem
+        UIApplication.shared.open(url)
     }
     
     // MARK: - Ad Generator
@@ -90,6 +90,7 @@ extension AdViewController: UITableViewDelegate, UITableViewDataSource {
             fatalError("Can not dequeue cell")
         }
         cell.adFeaturesDelegate = self
+        cell.ad = ads[indexPath.row].ad
         cell.viewModel = AdViewModel(searchAd: ads[indexPath.row])
         return cell
     }
@@ -103,7 +104,8 @@ extension AdViewController: AdFeatures {
     }
     
     func openSellerProfile(ad: AdModel) {
-        let sellerController = SellerViewController()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let sellerController = storyboard.instantiateViewController(withIdentifier: "SellerController") as! SellerViewController
         sellerController.seller = ad.seller
         self.present(sellerController, animated: true)
     }

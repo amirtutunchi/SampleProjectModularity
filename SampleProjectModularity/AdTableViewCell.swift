@@ -17,7 +17,7 @@ class AdTableViewCell: UITableViewCell {
     @IBOutlet weak var websiteText: UILabel!
     
     var adFeaturesDelegate: AdFeatures?
-    
+    var ad: AdModel?
     var viewModel: AdViewModel? {
         didSet {
             guard let viewModel = viewModel else {
@@ -34,5 +34,29 @@ class AdTableViewCell: UITableViewCell {
             }
         }
     }
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        websiteText.isUserInteractionEnabled = true
+        sellerNameText.isUserInteractionEnabled = true
+        
+        let tappedOnWebsite = UITapGestureRecognizer(target: self, action: (#selector(openWebsite)))
+        websiteText.addGestureRecognizer(tappedOnWebsite)
+        
+        let tappedOnSeller = UITapGestureRecognizer(target: self, action: (#selector(openSellerProfile)))
+        sellerNameText.addGestureRecognizer(tappedOnSeller)
+    }
     
+    @objc func openWebsite() {
+        guard let ad = ad else {
+            return
+        }
+        adFeaturesDelegate?.openWebsite(ad: ad)
+    }
+    
+    @objc func openSellerProfile() {
+        guard let ad = ad else {
+            return
+        }
+        adFeaturesDelegate?.openSellerProfile(ad: ad)
+    }
 }
