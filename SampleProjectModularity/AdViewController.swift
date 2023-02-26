@@ -21,7 +21,6 @@ class AdViewController: UIViewController {
     private let viewStore: ViewStore<AdFeature.State, AdFeature.Action>
     var ads = [SearchAdModel]()
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +30,6 @@ class AdViewController: UIViewController {
     func setupUI() {
         tableView.dataSource = self
         tableView.delegate = self
-        scrollView.delegate = self
     }
     func loadData() {
         ads = loadAds()
@@ -105,9 +103,16 @@ extension AdViewController: UITableViewDelegate, UITableViewDataSource {
         cell.searchAd = ads[indexPath.row]
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let newSearchParameters = SearchParametersModel()
+        newSearchParameters.selectedAd = ads[indexPath.row].ad
+        searchParameters = newSearchParameters
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
-extension AdViewController: AdFeatures {
+extension AdViewController: AdSellersDelegate {
     func openWebsite(ad: AdModel) {
         if let website = ad.seller.website, let url = URL(string: website) {
             presentInAppBrowser(url)
@@ -120,9 +125,4 @@ extension AdViewController: AdFeatures {
         sellerController.seller = ad.seller
         self.present(sellerController, animated: true)
     }
-}
-
-// MARK: - ScrollView Delegate
-extension AdViewController: UIScrollViewDelegate {
-    
 }

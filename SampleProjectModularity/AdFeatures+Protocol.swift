@@ -1,6 +1,6 @@
 import Foundation
 
-protocol AdFeatures {
+protocol AdSellersDelegate {
     func openWebsite(ad: AdModel)
     func openSellerProfile(ad: AdModel)
 }

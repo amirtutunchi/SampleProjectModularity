@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fnt-jO-iEf">
-                                <rect key="frame" x="0.0" y="98" width="414" height="764"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="90" id="t3J-vY-3Xd" customClass="AdTableViewCell" customModule="SampleProjectModularity" customModuleProvider="target">
@@ -86,31 +86,17 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" bounces="NO" alwaysBounceHorizontal="YES" bouncesZoom="NO" id="CJo-Z9-oDq">
-                                <rect key="frame" x="0.0" y="48" width="414" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="54H-c6-SWk"/>
-                                </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="dnr-iG-dg9"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="gVz-I0-V63"/>
-                            </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="CJo-Z9-oDq" secondAttribute="trailing" id="EJh-k9-xt3"/>
                             <constraint firstItem="fnt-jO-iEf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="HFE-pK-gU9"/>
                             <constraint firstItem="fnt-jO-iEf" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Lvl-MU-Ssc"/>
                             <constraint firstItem="fnt-jO-iEf" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Vh5-gG-GkO"/>
-                            <constraint firstItem="CJo-Z9-oDq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="WbS-LC-5hC"/>
-                            <constraint firstItem="fnt-jO-iEf" firstAttribute="top" secondItem="CJo-Z9-oDq" secondAttribute="bottom" id="lr5-3I-URa"/>
-                            <constraint firstItem="CJo-Z9-oDq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="pyE-SM-KqQ"/>
-                            <constraint firstItem="fnt-jO-iEf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="tVn-TB-t5I"/>
+                            <constraint firstItem="fnt-jO-iEf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="tVn-TB-t5I"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="scrollView" destination="CJo-Z9-oDq" id="m2b-q6-rMy"/>
                         <outlet property="tableView" destination="fnt-jO-iEf" id="Qru-zJ-dcP"/>
                     </connections>
                 </viewController>

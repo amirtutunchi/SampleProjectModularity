@@ -9,7 +9,7 @@ class AdTableViewCell: UITableViewCell {
     @IBOutlet weak var sellerNameText: UILabel!
     @IBOutlet weak var websiteText: UILabel!
     
-    var adFeaturesDelegate: AdFeatures?
+    var adFeaturesDelegate: AdSellersDelegate?
     var searchAd: SearchAdModel? {
         didSet {
             guard let searchAd = searchAd else {

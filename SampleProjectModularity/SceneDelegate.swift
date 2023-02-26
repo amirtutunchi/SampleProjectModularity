@@ -11,8 +11,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func configureWindow() {
-        let store = Store(initialState: AdFeature.State(searchParameters: SearchParametersModel()), reducer: AdFeature())
-        let adController = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(identifier: "AdViewController") { coder in
+        let store = Store(
+            initialState: AdFeature.State(
+                searchParameters: SearchParametersModel()),
+            reducer: AdFeature()
+        )
+        let adController = UIStoryboard(
+            name: "Main",
+            bundle: .main
+        ).instantiateViewController(identifier: "AdViewController") { coder in
             AdViewController(coder: coder, viewStore: ViewStore(store))
         }
         window?.rootViewController = adController
