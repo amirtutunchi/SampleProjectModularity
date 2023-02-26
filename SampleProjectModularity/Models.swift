@@ -1,11 +1,5 @@
-//
-//  AdModel.swift
-//  SampleProjectModularity
-//
-//  Created by AmirHossein BaradaranTutunchi on 02/09/2022.
-//
-
 import Foundation
+
 class AdModel {
     init(id: AnyHashable, name: String, price: Price, seller: Seller, image: String?) {
         self.id = id

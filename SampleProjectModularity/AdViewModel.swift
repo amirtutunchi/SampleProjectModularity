@@ -1,10 +1,3 @@
-//
-//  AdViewModel.swift
-//  SampleProjectModularity
-//
-//  Created by AmirHossein BaradaranTutunchi on 03/09/2022.
-//
-
 import Foundation
 
 struct AdViewModel {
@@ -13,6 +6,7 @@ struct AdViewModel {
     let sellerName: String
     let website: URL?
     let image: URL?
+    
     public init(searchAd: SearchAdModel) {
         name = searchAd.ad.name
         price = searchAd.ad.price.priceString
