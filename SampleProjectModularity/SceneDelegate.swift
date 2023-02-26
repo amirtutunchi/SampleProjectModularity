@@ -9,6 +9,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         configureWindow()
     }
+    
     private func configureWindow() {
         let store = Store(initialState: AdFeature.State(searchParameters: SearchParametersModel()), reducer: AdFeature())
         let adController = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(identifier: "AdViewController") { coder in
