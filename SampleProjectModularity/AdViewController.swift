@@ -1,16 +1,10 @@
-//
-//  ViewController.swift
-//  SampleProjectModularity
-//
-//  Created by AmirHossein BaradaranTutunchi on 02/09/2022.
-//
-
 import UIKit
 import Kingfisher
 
 class AdViewController: UIViewController {
     var ads = [SearchAdModel]()
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +14,7 @@ class AdViewController: UIViewController {
     func setupUI() {
         tableView.dataSource = self
         tableView.delegate = self
+        scrollView.delegate = self
     }
     func loadData() {
         ads = loadAds()
@@ -108,4 +103,9 @@ extension AdViewController: AdFeatures {
         sellerController.seller = ad.seller
         self.present(sellerController, animated: true)
     }
+}
+
+// MARK: - ScrollView Delegate
+extension AdViewController: UIScrollViewDelegate {
+    
 }
