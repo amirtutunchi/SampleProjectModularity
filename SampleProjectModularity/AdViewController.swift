@@ -1,7 +1,24 @@
 import UIKit
 import Kingfisher
+import ComposableArchitecture
 
 class AdViewController: UIViewController {
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    init?(coder: NSCoder, viewStore: ViewStore<AdFeature.State, AdFeature.Action>) {
+        self.viewStore = viewStore
+        super.init(coder: coder)
+    }
+    
+    var searchParameters = SearchParametersModel() {
+        didSet {
+            viewStore.send(.searchParameterUpdated(searchParameters))
+        }
+    }
+    
+    private let viewStore: ViewStore<AdFeature.State, AdFeature.Action>
     var ads = [SearchAdModel]()
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var scrollView: UIScrollView!
