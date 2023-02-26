@@ -20,7 +20,7 @@
 		CD0AF60828C3C5F200C598C8 /* AdTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0AF60728C3C5F200C598C8 /* AdTableViewCell.swift */; };
 		CD0AF60A28C3C64E00C598C8 /* AdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0AF60928C3C64E00C598C8 /* AdViewModel.swift */; };
 		CD0AF60C28C3C6B300C598C8 /* SellerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0AF60B28C3C6B300C598C8 /* SellerViewController.swift */; };
-		CD0AF60E28C3C6EB00C598C8 /* AdFeatures+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0AF60D28C3C6EB00C598C8 /* AdFeatures+Protocol.swift */; };
+		CD0AF60E28C3C6EB00C598C8 /* AdSellersDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0AF60D28C3C6EB00C598C8 /* AdSellersDelegate.swift */; };
 		CDCF0F6129AB7A0000876706 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CDCF0F6029AB7A0000876706 /* Kingfisher */; };
 		CDCF0F6429ABA5B900876706 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CDCF0F6329ABA5B900876706 /* ComposableArchitecture */; };
 		CDCF0F6629ABA6C300876706 /* SearchParametersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCF0F6529ABA6C300876706 /* SearchParametersModel.swift */; };
@@ -62,7 +62,7 @@
 		CD0AF60728C3C5F200C598C8 /* AdTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdTableViewCell.swift; sourceTree = "<group>"; };
 		CD0AF60928C3C64E00C598C8 /* AdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdViewModel.swift; sourceTree = "<group>"; };
 		CD0AF60B28C3C6B300C598C8 /* SellerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerViewController.swift; sourceTree = "<group>"; };
-		CD0AF60D28C3C6EB00C598C8 /* AdFeatures+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdFeatures+Protocol.swift"; sourceTree = "<group>"; };
+		CD0AF60D28C3C6EB00C598C8 /* AdSellersDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdSellersDelegate.swift; sourceTree = "<group>"; };
 		CDCF0F6529ABA6C300876706 /* SearchParametersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchParametersModel.swift; sourceTree = "<group>"; };
 		CDCF0F6829ABAA1A00876706 /* AdFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdFeature.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,6 +118,9 @@
 		CD0AF5D128C21D4A00C598C8 /* SampleProjectModularity */ = {
 			isa = PBXGroup;
 			children = (
+				CDCF0F6E29AC0DC800876706 /* Delegates */,
+				CDCF0F6D29AC0D8800876706 /* Views */,
+				CDCF0F6C29AC0D5400876706 /* Models */,
 				CDCF0F6729ABAA0C00876706 /* Store */,
 				CD0AF5D228C21D4A00C598C8 /* AppDelegate.swift */,
 				CD0AF5D428C21D4A00C598C8 /* SceneDelegate.swift */,
@@ -125,13 +128,6 @@
 				CD0AF5DB28C21D4C00C598C8 /* Assets.xcassets */,
 				CD0AF5DD28C21D4C00C598C8 /* LaunchScreen.storyboard */,
 				CD0AF5E028C21D4C00C598C8 /* Info.plist */,
-				CD0AF5D628C21D4A00C598C8 /* AdViewController.swift */,
-				CD0AF60228C21D7500C598C8 /* Models.swift */,
-				CD0AF60728C3C5F200C598C8 /* AdTableViewCell.swift */,
-				CD0AF60928C3C64E00C598C8 /* AdViewModel.swift */,
-				CD0AF60B28C3C6B300C598C8 /* SellerViewController.swift */,
-				CD0AF60D28C3C6EB00C598C8 /* AdFeatures+Protocol.swift */,
-				CDCF0F6529ABA6C300876706 /* SearchParametersModel.swift */,
 			);
 			path = SampleProjectModularity;
 			sourceTree = "<group>";
@@ -166,6 +162,34 @@
 				CDCF0F6829ABAA1A00876706 /* AdFeature.swift */,
 			);
 			path = Store;
+			sourceTree = "<group>";
+		};
+		CDCF0F6C29AC0D5400876706 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CDCF0F6529ABA6C300876706 /* SearchParametersModel.swift */,
+				CD0AF60928C3C64E00C598C8 /* AdViewModel.swift */,
+				CD0AF60228C21D7500C598C8 /* Models.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CDCF0F6D29AC0D8800876706 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CD0AF5D628C21D4A00C598C8 /* AdViewController.swift */,
+				CD0AF60728C3C5F200C598C8 /* AdTableViewCell.swift */,
+				CD0AF60B28C3C6B300C598C8 /* SellerViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CDCF0F6E29AC0DC800876706 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				CD0AF60D28C3C6EB00C598C8 /* AdSellersDelegate.swift */,
+			);
+			path = Delegates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -313,7 +337,7 @@
 				CD0AF60328C21D7500C598C8 /* Models.swift in Sources */,
 				CD0AF60A28C3C64E00C598C8 /* AdViewModel.swift in Sources */,
 				CD0AF5D528C21D4A00C598C8 /* SceneDelegate.swift in Sources */,
-				CD0AF60E28C3C6EB00C598C8 /* AdFeatures+Protocol.swift in Sources */,
+				CD0AF60E28C3C6EB00C598C8 /* AdSellersDelegate.swift in Sources */,
 				CD0AF60828C3C5F200C598C8 /* AdTableViewCell.swift in Sources */,
 				CDCF0F6629ABA6C300876706 /* SearchParametersModel.swift in Sources */,
 				CD0AF60C28C3C6B300C598C8 /* SellerViewController.swift in Sources */,
