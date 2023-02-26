@@ -14,6 +14,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let adController = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(identifier: "AdViewController") { coder in
             AdViewController(coder: coder, viewStore: ViewStore(store))
         }
+        window?.rootViewController = adController
+        window?.makeKeyAndVisible()
     }
 }
 
