@@ -3,6 +3,21 @@ import Kingfisher
 import ComposableArchitecture
 
 class AdViewController: UIViewController {
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var filterButton: UIButton!
+    
+    @IBAction func filterButton_Tapped(_ sender: Any) {
+         
+    }
+    
+    private let viewStore: ViewStore<AdFeature.State, AdFeature.Action>
+    var ads = [SearchAdModel]()
+    var searchParameters = SearchParametersModel() {
+        didSet {
+            viewStore.send(.searchParameterUpdated(searchParameters))
+        }
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -12,29 +27,22 @@ class AdViewController: UIViewController {
         super.init(coder: coder)
     }
     
-    var searchParameters = SearchParametersModel() {
-        didSet {
-            viewStore.send(.searchParameterUpdated(searchParameters))
-        }
-    }
-    
-    private let viewStore: ViewStore<AdFeature.State, AdFeature.Action>
-    var ads = [SearchAdModel]()
-    @IBOutlet weak var tableView: UITableView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         loadData()
     }
+    
     func setupUI() {
         tableView.dataSource = self
         tableView.delegate = self
     }
+    
     func loadData() {
         ads = loadAds()
         tableView.reloadData()
     }
+    
     func presentInAppBrowser(_ url: URL) {
         UIApplication.shared.open(url)
     }

@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fnt-jO-iEf">
-                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
+                                <rect key="frame" x="0.0" y="108" width="414" height="754"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="90" id="t3J-vY-3Xd" customClass="AdTableViewCell" customModule="SampleProjectModularity" customModuleProvider="target">
@@ -86,17 +86,32 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rWn-0L-h4R">
+                                <rect key="frame" x="16" y="48" width="382" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Bmo-CV-857"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Filter"/>
+                                <connections>
+                                    <action selector="filterButten_Tapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AYH-IE-3Vd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="rWn-0L-h4R" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="7B8-rx-iWJ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rWn-0L-h4R" secondAttribute="trailing" constant="16" id="Acg-vD-g6T"/>
                             <constraint firstItem="fnt-jO-iEf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="HFE-pK-gU9"/>
+                            <constraint firstItem="rWn-0L-h4R" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Kpm-b4-gmJ"/>
                             <constraint firstItem="fnt-jO-iEf" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Lvl-MU-Ssc"/>
                             <constraint firstItem="fnt-jO-iEf" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Vh5-gG-GkO"/>
-                            <constraint firstItem="fnt-jO-iEf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="tVn-TB-t5I"/>
+                            <constraint firstItem="fnt-jO-iEf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="60" id="tVn-TB-t5I"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="filterButton" destination="rWn-0L-h4R" id="cQ1-W0-MjZ"/>
                         <outlet property="tableView" destination="fnt-jO-iEf" id="Qru-zJ-dcP"/>
                     </connections>
                 </viewController>
@@ -151,6 +166,65 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="18I-sg-bOv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="925" y="77"/>
+        </scene>
+        <!--Filter View Controller-->
+        <scene sceneID="NEy-3S-nQd">
+            <objects>
+                <viewController id="xUP-86-zya" customClass="FilterViewController" customModule="SampleProjectModularity" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="djq-d6-H8R">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q4N-O1-lLt">
+                                <rect key="frame" x="87" y="390" width="240" height="130"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search here ..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HjB-F7-QrY">
+                                        <rect key="frame" x="16" y="16" width="208" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="Od6-la-2qU"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TWv-oM-YWB">
+                                        <rect key="frame" x="16" y="76" width="208" height="38"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Filter"/>
+                                        <connections>
+                                            <action selector="filterButton_Tapped:" destination="xUP-86-zya" eventType="touchUpInside" id="akH-9o-5xh"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="HjB-F7-QrY" firstAttribute="top" secondItem="Q4N-O1-lLt" secondAttribute="top" constant="16" id="2YP-g7-FoP"/>
+                                    <constraint firstItem="TWv-oM-YWB" firstAttribute="top" secondItem="HjB-F7-QrY" secondAttribute="bottom" constant="16" id="4sl-F0-Rgx"/>
+                                    <constraint firstItem="HjB-F7-QrY" firstAttribute="leading" secondItem="Q4N-O1-lLt" secondAttribute="leading" constant="16" id="HQZ-E3-d2x"/>
+                                    <constraint firstItem="TWv-oM-YWB" firstAttribute="leading" secondItem="Q4N-O1-lLt" secondAttribute="leading" constant="16" id="Lor-yJ-eAg"/>
+                                    <constraint firstAttribute="trailing" secondItem="HjB-F7-QrY" secondAttribute="trailing" constant="16" id="c0L-33-bAW"/>
+                                    <constraint firstAttribute="height" constant="130" id="c7I-RJ-Ei4"/>
+                                    <constraint firstAttribute="width" constant="240" id="fqM-gg-Hop"/>
+                                    <constraint firstAttribute="bottom" secondItem="TWv-oM-YWB" secondAttribute="bottom" constant="16" id="jex-3I-Bv2"/>
+                                    <constraint firstAttribute="trailing" secondItem="TWv-oM-YWB" secondAttribute="trailing" constant="16" id="yEN-u7-M1P"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="7hl-lt-TYf"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Q4N-O1-lLt" firstAttribute="centerX" secondItem="7hl-lt-TYf" secondAttribute="centerX" id="631-Ng-uqc"/>
+                            <constraint firstItem="Q4N-O1-lLt" firstAttribute="centerY" secondItem="7hl-lt-TYf" secondAttribute="centerY" id="HR2-H8-H01"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="filterButton" destination="TWv-oM-YWB" id="zGy-Cb-QRu"/>
+                        <outlet property="filterTextbox" destination="HjB-F7-QrY" id="ueE-st-7Lm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XUD-CN-hY6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1671.0144927536232" y="81.696428571428569"/>
         </scene>
     </scenes>
     <resources>
