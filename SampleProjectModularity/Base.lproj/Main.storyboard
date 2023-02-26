@@ -94,7 +94,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Filter"/>
                                 <connections>
-                                    <action selector="filterButten_Tapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AYH-IE-3Vd"/>
+                                    <action selector="filterButton_Tapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="k3d-kx-KZq"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -170,7 +170,7 @@
         <!--Filter View Controller-->
         <scene sceneID="NEy-3S-nQd">
             <objects>
-                <viewController id="xUP-86-zya" customClass="FilterViewController" customModule="SampleProjectModularity" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FilterViewController" id="xUP-86-zya" customClass="FilterViewController" customModule="SampleProjectModularity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="djq-d6-H8R">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

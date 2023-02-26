@@ -6,8 +6,20 @@ class AdViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var filterButton: UIButton!
     
-    @IBAction func filterButton_Tapped(_ sender: Any) {
-         
+    @IBAction func filterButton_Tapped(_ sender: UIButton) {
+        let filterViewController = UIStoryboard(
+            name: "Main",
+            bundle: .main
+        ).instantiateViewController(identifier: "FilterViewController") { [weak self] coder in
+            guard let self = self else { fatalError("something bad happend") }
+            return FilterViewController(
+                coder: coder,
+                searchParameters: self.searchParameters,
+                onFilterTap: self.onFilterChanged
+            )
+        }
+        
+        self.present(filterViewController, animated: true)
     }
     
     private let viewStore: ViewStore<AdFeature.State, AdFeature.Action>
@@ -46,9 +58,13 @@ class AdViewController: UIViewController {
     func presentInAppBrowser(_ url: URL) {
         UIApplication.shared.open(url)
     }
-    
+    func onFilterChanged(_ searchParameters: SearchParametersModel) {
+        self.searchParameters = searchParameters
+        ads = loadAds(filteredText: searchParameters.filteredText)
+        tableView.reloadData()
+    }
     // MARK: - Ad Generator
-    private func loadAds() -> [SearchAdModel] {
+    private func loadAds(filteredText: String? = nil) -> [SearchAdModel] {
         let sellerWithoutWebsite = Seller(name: "Ali", website: nil)
         let seller = Seller(name: "Jack", website: "https://www.google.com")
         let price = Price(priceAmount: 1000, priceString: "1000 $")
@@ -93,9 +109,21 @@ class AdViewController: UIViewController {
             seller: seller,
             image: "https://picsum.photos/200"
         ).toSearchAdModel()
-        return [ad1, ad2, ad3, ad4, ad5, ad6]
+        let ads = [ad1, ad2, ad3, ad4, ad5, ad6]
+        let filteredAds = ads.compactMap { item in
+            if let filteredText = filteredText  {
+                if item.ad.name.contains(filteredText) {
+                    return item
+                } else {
+                    return nil
+                }
+            } else {
+                return item
+            }
+        }
+        return filteredAds
     }
-
+    
 }
 
 extension AdViewController: UITableViewDelegate, UITableViewDataSource {
