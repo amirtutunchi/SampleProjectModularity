@@ -3,7 +3,11 @@ import UIKit
 class FilterViewController: UIViewController {
     
     @IBAction func filterButton_Tapped(_ sender: Any) {
-        searchParameters.filteredText = filterTextbox.text
+        if !(filterTextbox.text?.isEmpty ?? false) {
+            searchParameters.filteredText = filterTextbox.text
+        } else {
+            searchParameters.filteredText = nil
+        }
         onFilterButtonTap(searchParameters)
         self.dismiss(animated: true)
     }

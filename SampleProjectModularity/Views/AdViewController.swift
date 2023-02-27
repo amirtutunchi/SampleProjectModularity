@@ -60,7 +60,13 @@ class AdViewController: UIViewController {
     }
     func onFilterChanged(_ searchParameters: SearchParametersModel) {
         self.searchParameters = searchParameters
-        ads = loadAds(filteredText: searchParameters.filteredText)
+        if let filteredText = searchParameters.filteredText {
+            ads = loadAds(filteredText: filteredText)
+            filterButton.setTitle("Filter is \(filteredText)", for: .normal)
+        } else {
+            ads = loadAds()
+            filterButton.setTitle("Filter", for: .normal)
+        }
         tableView.reloadData()
     }
     // MARK: - Ad Generator
@@ -112,7 +118,7 @@ class AdViewController: UIViewController {
         let ads = [ad1, ad2, ad3, ad4, ad5, ad6]
         let filteredAds = ads.compactMap { item in
             if let filteredText = filteredText  {
-                if item.ad.name.contains(filteredText) {
+                if item.ad.name.lowercased().contains(filteredText.lowercased()) {
                     return item
                 } else {
                     return nil
@@ -141,9 +147,6 @@ extension AdViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let newSearchParameters = SearchParametersModel()
-        newSearchParameters.selectedAd = ads[indexPath.row].ad
-        searchParameters = newSearchParameters
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
