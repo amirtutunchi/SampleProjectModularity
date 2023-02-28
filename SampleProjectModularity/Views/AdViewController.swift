@@ -5,13 +5,12 @@ import ComposableArchitecture
 class AdViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var filterButton: UIButton!
-    
     @IBAction func filterButton_Tapped(_ sender: UIButton) {
         let filterViewController = UIStoryboard(
             name: "Main",
             bundle: .main
         ).instantiateViewController(identifier: "FilterViewController") { [weak self] coder in
-            guard let self = self else { fatalError("something bad happend") }
+            guard let self = self else { fatalError("something bad happened") }
             return FilterViewController(
                 coder: coder,
                 searchParameters: self.searchParameters,
@@ -43,6 +42,8 @@ class AdViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         loadData()
+        GAnalytic.sharedInstance.customDimensions = ["loading"]
+        GAnalytic.sharedInstance.sendEvent(eventName: "PageLoaded")
     }
     
     func setupUI() {
@@ -59,6 +60,8 @@ class AdViewController: UIViewController {
         UIApplication.shared.open(url)
     }
     func onFilterChanged(_ searchParameters: SearchParametersModel) {
+        GAnalytic.sharedInstance.customDimensions = ["loading", "filter"]
+        GAnalytic.sharedInstance.sendEvent(eventName: "FilterChanged")
         self.searchParameters = searchParameters
         if let filteredText = searchParameters.filteredText {
             ads = loadAds(filteredText: filteredText)

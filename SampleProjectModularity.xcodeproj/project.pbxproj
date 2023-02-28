@@ -21,6 +21,7 @@
 		CD0AF60A28C3C64E00C598C8 /* AdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0AF60928C3C64E00C598C8 /* AdViewModel.swift */; };
 		CD0AF60C28C3C6B300C598C8 /* SellerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0AF60B28C3C6B300C598C8 /* SellerViewController.swift */; };
 		CD0AF60E28C3C6EB00C598C8 /* AdSellersDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0AF60D28C3C6EB00C598C8 /* AdSellersDelegate.swift */; };
+		CD76F2F829AE99CF0047D484 /* GAnalytic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD76F2F729AE99CF0047D484 /* GAnalytic.swift */; };
 		CD96EA9229AD638800502BE8 /* AdFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD96EA9129AD638800502BE8 /* AdFeatureTests.swift */; };
 		CDCF0F6129AB7A0000876706 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CDCF0F6029AB7A0000876706 /* Kingfisher */; };
 		CDCF0F6429ABA5B900876706 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CDCF0F6329ABA5B900876706 /* ComposableArchitecture */; };
@@ -65,6 +66,7 @@
 		CD0AF60928C3C64E00C598C8 /* AdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdViewModel.swift; sourceTree = "<group>"; };
 		CD0AF60B28C3C6B300C598C8 /* SellerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerViewController.swift; sourceTree = "<group>"; };
 		CD0AF60D28C3C6EB00C598C8 /* AdSellersDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdSellersDelegate.swift; sourceTree = "<group>"; };
+		CD76F2F729AE99CF0047D484 /* GAnalytic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAnalytic.swift; sourceTree = "<group>"; };
 		CD96EA9129AD638800502BE8 /* AdFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdFeatureTests.swift; sourceTree = "<group>"; };
 		CDCF0F6529ABA6C300876706 /* SearchParametersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchParametersModel.swift; sourceTree = "<group>"; };
 		CDCF0F6829ABAA1A00876706 /* AdFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdFeature.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				CD0AF5DB28C21D4C00C598C8 /* Assets.xcassets */,
 				CD0AF5DD28C21D4C00C598C8 /* LaunchScreen.storyboard */,
 				CD0AF5E028C21D4C00C598C8 /* Info.plist */,
+				CD76F2F729AE99CF0047D484 /* GAnalytic.swift */,
 			);
 			path = SampleProjectModularity;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				CD0AF60E28C3C6EB00C598C8 /* AdSellersDelegate.swift in Sources */,
 				CD0AF60828C3C5F200C598C8 /* AdTableViewCell.swift in Sources */,
 				CDCF0F6629ABA6C300876706 /* SearchParametersModel.swift in Sources */,
+				CD76F2F829AE99CF0047D484 /* GAnalytic.swift in Sources */,
 				CD0AF60C28C3C6B300C598C8 /* SellerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
