@@ -1,10 +1,22 @@
 import UIKit
 import Kingfisher
-import ComposableArchitecture
 
 class AdViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var filterButton: UIButton!
+    @IBOutlet weak var carsOnlyButton: UIButton!
+    @IBOutlet weak var numberOfFiltersLabel: UILabel!
+    
+    @IBAction func carsOnlyButton_Tapped(_ sender: UIButton) {
+        carsOnlyFilter.toggle()
+        if carsOnlyFilter {
+            carsOnlyButton.tintColor = .green
+        } else {
+            carsOnlyButton.tintColor = .red
+        }
+        loadAds(filteredText: searchParameters.filteredText)
+        calculateCountOfFilters()
+    }
     @IBAction func filterButton_Tapped(_ sender: UIButton) {
         let filterViewController = UIStoryboard(
             name: "Main",
@@ -21,27 +33,32 @@ class AdViewController: UIViewController {
         self.present(filterViewController, animated: true)
     }
     
-    private let viewStore: ViewStore<AdFeature.State, AdFeature.Action>
-    var ads = [SearchAdModel]()
-    var searchParameters = SearchParametersModel() {
+    var ads = [SearchAdModel]() {
         didSet {
-            viewStore.send(.searchParameterUpdated(searchParameters))
+            tableView.reloadData()
         }
     }
-    
+    var searchParameters = SearchParametersModel()
+    var carsOnlyFilter: Bool = false
+    var filteredText: String? {
+        didSet {
+            searchParameters.filteredText = filteredText
+        }
+    }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init?(coder: NSCoder, viewStore: ViewStore<AdFeature.State, AdFeature.Action>) {
-        self.viewStore = viewStore
+    init?(coder: NSCoder, filteredText: String?) {
+        self.filteredText = filteredText
         super.init(coder: coder)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        loadData()
+        loadAds()
+        calculateCountOfFilters()
         GAnalytic.sharedInstance.customDimensions = ["loading"]
         GAnalytic.sharedInstance.sendEvent(eventName: "PageLoaded")
     }
@@ -51,88 +68,68 @@ class AdViewController: UIViewController {
         tableView.delegate = self
     }
     
-    func loadData() {
-        ads = loadAds()
-        tableView.reloadData()
-    }
-    
     func presentInAppBrowser(_ url: URL) {
         UIApplication.shared.open(url)
     }
+    
     func onFilterChanged(_ searchParameters: SearchParametersModel) {
         GAnalytic.sharedInstance.customDimensions = ["loading", "filter"]
         GAnalytic.sharedInstance.sendEvent(eventName: "FilterChanged")
         self.searchParameters = searchParameters
         if let filteredText = searchParameters.filteredText {
-            ads = loadAds(filteredText: filteredText)
+            loadAds(filteredText: filteredText)
             filterButton.setTitle("Filter is \(filteredText)", for: .normal)
         } else {
-            ads = loadAds()
+            loadAds()
             filterButton.setTitle("Filter", for: .normal)
         }
         tableView.reloadData()
-    }
-    // MARK: - Ad Generator
-    private func loadAds(filteredText: String? = nil) -> [SearchAdModel] {
-        let sellerWithoutWebsite = Seller(name: "Ali", website: nil)
-        let seller = Seller(name: "Jack", website: "https://www.google.com")
-        let price = Price(priceAmount: 1000, priceString: "1000 $")
-        let ad1 = AdModel(
-            id: UUID().uuidString,
-            name: "Car", price: price,
-            seller: sellerWithoutWebsite,
-            image: "https://picsum.photos/200"
-        ).toSearchAdModel()
-        let ad2 = AdModel(
-            id: UUID().uuidString,
-            name: "Cat",
-            price: price,
-            seller: seller,
-            image: "https://picsum.photos/200"
-        ).toSearchAdModel()
-        let ad3 = AdModel(
-            id: UUID().uuidString,
-            name: "Umbrella",
-            price: price,
-            seller: sellerWithoutWebsite,
-            image: "https://picsum.photos/200"
-        ).toSearchAdModel()
-        let ad4 = AdModel(
-            id: UUID().uuidString,
-            name: "Microphone",
-            price: price,
-            seller: seller,
-            image: nil
-        ).toSearchAdModel()
-        let ad5 = AdModel(
-            id: UUID().uuidString,
-            name: "Guitar",
-            price: price,
-            seller: sellerWithoutWebsite,
-            image: "https://picsum.photos/200"
-        ).toSearchAdModel()
-        let ad6 = AdModel(
-            id: UUID().uuidString,
-            name: "Piano",
-            price: price,
-            seller: seller,
-            image: "https://picsum.photos/200"
-        ).toSearchAdModel()
-        let ads = [ad1, ad2, ad3, ad4, ad5, ad6]
-        let filteredAds = ads.compactMap { item in
-            if let filteredText = filteredText  {
-                if item.ad.name.lowercased().contains(filteredText.lowercased()) {
-                    return item
-                } else {
-                    return nil
-                }
-            } else {
-                return item
-            }
-        }
-        return filteredAds
+        calculateCountOfFilters()
     }
     
+    func calculateCountOfFilters() {
+        var count = 0
+        if carsOnlyFilter {
+            count += 1
+        }
+        if searchParameters.filteredText != nil {
+            count += 1
+        }
+        numberOfFiltersLabel.text = "\(count) filters"
+    }
+    // MARK: - Ad Network Calls
+    private func loadAds(filteredText: String? = nil) {
+        NetworkClient.sharedInstance.getAds { [weak self]  ads in
+            let filteredAds = ads.compactMap { item in
+                if carsOnlyFilter {
+                    if item.ad.name.lowercased().contains("car") {
+                        if let filteredText = filteredText  {
+                            if item.ad.name.lowercased().contains(filteredText.lowercased()) {
+                                return item
+                            } else {
+                                return nil
+                            }
+                        } else {
+                            return item
+                        }
+                    } else {
+                        return nil
+                    }
+                } else {
+                    if let filteredText = filteredText  {
+                        if item.ad.name.lowercased().contains(filteredText.lowercased()) {
+                            return item
+                        } else {
+                            return nil
+                        }
+                    } else {
+                        return item
+                    }
+                }
+            }
+            self?.ads = filteredAds
+        }
+    }
 }
 
 extension AdViewController: UITableViewDelegate, UITableViewDataSource {

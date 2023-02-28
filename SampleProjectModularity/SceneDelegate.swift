@@ -1,5 +1,4 @@
 import UIKit
-import ComposableArchitecture
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
@@ -11,16 +10,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func configureWindow() {
-        let store = Store(
-            initialState: AdFeature.State(
-                searchParameters: SearchParametersModel()),
-            reducer: AdFeature()
-        )
         let adController = UIStoryboard(
             name: "Main",
             bundle: .main
         ).instantiateViewController(identifier: "AdViewController") { coder in
-            AdViewController(coder: coder, viewStore: ViewStore(store))
+            AdViewController(coder: coder, filteredText: nil)
         }
         window?.rootViewController = adController
         window?.makeKeyAndVisible()

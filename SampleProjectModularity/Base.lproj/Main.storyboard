@@ -35,7 +35,7 @@
                                                         <constraint firstAttribute="width" constant="80" id="sLh-SO-m2s"/>
                                                     </constraints>
                                                 </imageView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yaN-VV-iwW">
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="yaN-VV-iwW">
                                                     <rect key="frame" x="96" y="4" width="310" height="82"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ur-z6-PwT">
@@ -87,7 +87,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rWn-0L-h4R">
-                                <rect key="frame" x="16" y="48" width="382" height="60"/>
+                                <rect key="frame" x="176" y="48" width="62" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Bmo-CV-857"/>
                                 </constraints>
@@ -97,21 +97,41 @@
                                     <action selector="filterButton_Tapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="k3d-kx-KZq"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 filters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybc-Yh-P1q">
+                                <rect key="frame" x="20" y="68" width="57.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XzA-pe-53L">
+                                <rect key="frame" x="302.5" y="61" width="98.5" height="34.5"/>
+                                <color key="tintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Cars Only"/>
+                                <connections>
+                                    <action selector="carsOnlyButton_Tapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fUb-zu-x6M"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="rWn-0L-h4R" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="7B8-rx-iWJ"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rWn-0L-h4R" secondAttribute="trailing" constant="16" id="Acg-vD-g6T"/>
+                            <constraint firstItem="XzA-pe-53L" firstAttribute="centerY" secondItem="rWn-0L-h4R" secondAttribute="centerY" id="Emn-XG-EnF"/>
                             <constraint firstItem="fnt-jO-iEf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="HFE-pK-gU9"/>
+                            <constraint firstItem="ybc-Yh-P1q" firstAttribute="centerY" secondItem="rWn-0L-h4R" secondAttribute="centerY" id="I8w-cf-Fid"/>
                             <constraint firstItem="rWn-0L-h4R" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Kpm-b4-gmJ"/>
+                            <constraint firstItem="ybc-Yh-P1q" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Kyz-RH-z7w"/>
                             <constraint firstItem="fnt-jO-iEf" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Lvl-MU-Ssc"/>
                             <constraint firstItem="fnt-jO-iEf" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Vh5-gG-GkO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="XzA-pe-53L" secondAttribute="trailing" constant="13" id="gfC-Bm-hJ3"/>
+                            <constraint firstItem="rWn-0L-h4R" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="jkv-pw-Av3"/>
                             <constraint firstItem="fnt-jO-iEf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="60" id="tVn-TB-t5I"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="carsOnlyButton" destination="XzA-pe-53L" id="vZr-xo-jcV"/>
                         <outlet property="filterButton" destination="rWn-0L-h4R" id="cQ1-W0-MjZ"/>
+                        <outlet property="numberOfFiltersLabel" destination="ybc-Yh-P1q" id="ad2-OG-zS1"/>
                         <outlet property="tableView" destination="fnt-jO-iEf" id="Qru-zJ-dcP"/>
                     </connections>
                 </viewController>
